@@ -45,7 +45,7 @@ export const SignInView = () => {
       {
         onSuccess: () => {          
           setPending(false);
-
+          router.push("/");
         },
         onError: ({ error }) => {
           setPending(false);
@@ -143,8 +143,12 @@ export const SignInView = () => {
                   </span>
                 </div>
                 <div className="grid gap-4 md:grid-cols-2">
-                  <Button onClick={()=>onSocial("google")} variant={"outline"} type="button" className="w-full">
-                    <FaGoogle/>
+                  <Button 
+                  onClick={() => onSocial("google")}
+                  variant={"outline"} 
+                  type="button" 
+                  className="w-full">
+                    <FaGoogle />
                   </Button>
                   <Button
                     onClick={() => onSocial("github")}
@@ -152,7 +156,7 @@ export const SignInView = () => {
                     type="button"
                     className="w-full"
                   >
-                    <FaGithub/>
+                    <FaGithub />
                   </Button>
                 </div>
                 <div className="text-center text-sm">

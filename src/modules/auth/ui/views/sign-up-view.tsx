@@ -34,7 +34,6 @@ const formSchema = z.object({
   });
 
 export const SignUpView = () => {
-
   const router = useRouter();
   const [error,setError] = useState<string|null>(null)
   const [pending,setPending] = useState<Boolean>(false);
@@ -56,10 +55,12 @@ export const SignUpView = () => {
     await authClient.signUp.email({
       email:data.email,
       password:data.password,
-      name:data.name
+      name:data.name,
+      callbackURL: "/"
     },
     {
       onSuccess:()=>{
+        setPending(false);
         router.push("/");
       },
       onError:({error})=>{
@@ -193,8 +194,12 @@ export const SignUpView = () => {
                   <span className="bg-card text-muted-foreground relative z-10 px-2">Or continue with</span>
                 </div>
                 <div className="grid gap-4 md:grid-cols-2">
-                  <Button onClick={()=>onSocial("google")} variant={"outline"} type="button" className="w-full">
-                    <FaGoogle/>
+                  <Button 
+                  onClick={() => onSocial("google")}
+                  variant={"outline"} 
+                  type="button" 
+                  className="w-full">
+                    <FaGoogle />
                   </Button>
                   <Button
                     onClick={() => onSocial("github")}
@@ -202,7 +207,7 @@ export const SignUpView = () => {
                     type="button"
                     className="w-full"
                   >
-                    <FaGithub/>
+                    <FaGithub />
                   </Button>
                 </div>
                 <div className="text-center text-sm">

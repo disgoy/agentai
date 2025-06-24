@@ -7,12 +7,18 @@ export const HomeView = () => {
   const router = useRouter();
   const { data : session } = authClient.useSession();
 
+  // if (!session) {
+  //   return (
+  //     <div className='flex flex-col items-center justify-center min-h-dvh gap-4'>
+  //       <div className='animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900'></div>
+  //       <p>Loading...</p>
+  //     </div>
+  //   );
+  // }
+
   if (!session) {
     return (
-      <div className='flex flex-col items-center justify-center min-h-dvh gap-4'>
-        <div className='animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900'></div>
-        <p>Loading...</p>
-      </div>
+      <p>Loading...</p>
     );
   }
 
